@@ -6,7 +6,7 @@ class Bank
   end
 
   def valid_transaction?(amount, credit_card)
-    if credit_card.limit >= amount && credit_card.is_valid?
+    if credit_card.card_limit >= amount && credit_card.is_valid?
       true
     else
       false

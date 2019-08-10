@@ -16,7 +16,13 @@ class BankTest < Minitest::Test
 
   def test_it_knows_a_transaction_is_invalid_when_credit_card_is_invalid
     bank = Bank.new("Wells Fargo")
-    credit_card = CreditCard.new("4024007106512380", 15000)
+    credit_card = CreditCard.new("5541801923795240", 15000)
+    assert_equal false, bank.valid_transaction?(100, credit_card)
+  end
+
+  def test_it_knows_a_transaction_is_invalid_when_credit_card_is_invalid2
+    bank = Bank.new("Wells Fargo")
+    credit_card = CreditCard.new("6011797668868728", 15000)
     assert_equal false, bank.valid_transaction?(100, credit_card)
   end
 
@@ -28,7 +34,14 @@ class BankTest < Minitest::Test
 
   def test_it_knows_when_a_transaction_is_valid
     bank = Bank.new("Wells Fargo")
-    credit_card = CreditCard.new("5541808923795240", 15000)
+    credit_card = CreditCard.new("4024007136512380", 15000)
     assert_equal true, bank.valid_transaction?(11000, credit_card)
   end
+
+  def test_it_knows_when_a_transaction_is_valid
+    bank = Bank.new("Wells Fargo")
+    credit_card = CreditCard.new("6011797668867828", 15000)
+    assert_equal true, bank.valid_transaction?(11000, credit_card)
+  end
+
 end
